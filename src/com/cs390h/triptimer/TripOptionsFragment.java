@@ -6,13 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class AllTripsFragment extends Fragment {
+public class TripOptionsFragment extends Fragment {
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.trips_list, container, false);
+        View rootView = inflater.inflate(R.layout.trip_options, container, false);
         return rootView;
     }
-
 }

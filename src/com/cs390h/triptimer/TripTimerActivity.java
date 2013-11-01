@@ -2,23 +2,46 @@ package com.cs390h.triptimer;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
+import android.app.Fragment;
 import android.view.Menu;
 import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
+/**
+ * Utilizes code describe by the tutorial at:
+ * http://www.androidbegin.com/tutorial/implementing-fragment-tabs-in-android/.
+ * @author andrew.canastar
+ *
+ */
 
-public class TripTimerActivity extends Activity implements ActionBar.TabListener {
-
+public class TripTimerActivity extends Activity {
+	
+	// Declare an ActionBar tab for each tab in the activity
+	ActionBar.Tab mapTab, tripsTab;
+	// Declare fragments for each fragment that will be placed
+	// in the activity - will need to modify for multiple fragments
+	// swapping in and out of the tripsTab
+	Fragment mapFragment = new RouteButtonFragment();
+	// Just using all trips fragment for now
+	Fragment tripOptionsFragment = new TripOptionsFragment();
+	
+	/**
+	 * 
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// Activity Constructor takes a Bundle of data for when it is restarted from pause()
 		super.onCreate(savedInstanceState);
-		final ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.addTab(actionBar.newTab().setText("Maps").setTabListener(this));
-		actionBar.addTab(actionBar.newTab().setText("Trips").setTabListener(this));
+		// Defines the layout of the View for the main activity
 		setContentView(R.layout.activity_trip_timer);
+		// getActionBar() returns reference to the activity's ActionBar
+		final ActionBar actionBar = getActionBar();
+		// turns on the tabs navigation mode for the action bar; shows tabs
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		// hide the ActionBar title
+		actionBar.setDisplayShowTitleEnabled(false);
+		// add tabs to the ActionBar and set the Fragments to pass to the TabListener method
+		// TabListener just separates out the tab implementation from the main Activity
+		actionBar.addTab(actionBar.newTab().setText("Maps").setTabListener(new TabListener(mapFragment)));
+		actionBar.addTab(actionBar.newTab().setText("Trips").setTabListener(new TabListener(tripOptionsFragment)));
 	}
 
 	@Override
@@ -27,23 +50,4 @@ public class TripTimerActivity extends Activity implements ActionBar.TabListener
 		getMenuInflater().inflate(R.menu.trip_timer, menu);
 		return true;
 	}
-
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		Log.d("Tab", String.valueOf(tab.getPosition()) + " re-selected");		
-	}
-
-	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		Log.d("Tab", String.valueOf(tab.getPosition()) + " selected");	
-	}
-
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		Log.d("Tab", String.valueOf(tab.getPosition()) + " unselected");	
-	}
-
 }
