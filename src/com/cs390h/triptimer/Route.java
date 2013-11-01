@@ -2,93 +2,86 @@ package com.cs390h.triptimer;
 
 import java.util.Date;
 
-/**
- * Route objects are a collection of getter and setter methods
- * for variables recorded and displayed by TripTimer. Route objects
- * are populated by setter methods as the TripTimer is 
- * running or by queries to the database. Data from the Route
- * objects is to be used to populate AllTrips... and AveragesBy...
- * Fragments in the Trips activity.
- *   
- * @author andrew.canastar and john.qualls
- * @version 2013.10.31
- *
- */
-public class Route implements RouteInterface {
-
-	private String routeName, timeOfDay;
-	private Long tripTime; 
-	private Date tripDate;
+public class Route extends AbstractRoute {
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.cs390h.triptimer.RouteInterface#setRouteName(java.lang.String)
+	/**
+	 * Default constructor; possibly better for it to automatically
+	 * update timeOfDay and tripTime
 	 */
-	@Override
-	public void setRouteName(String routeName) {
+	public Route() {
+		// provided by the user
+		this.routeName = null;
+		// could be automatically set by the constructor?		
+		this.timeOfDay = null;
+		// could be automatically set by the constructor?
+		this.tripDate = null;
+		// calculated and set
+		this.tripTime = null;
+	}	
+	
+	/**
+	 * 
+	 * @param routeName
+	 */
+	public Route( String routeName ) {
+		// provided by the user
 		this.routeName = routeName;
-	}
+		// could be automatically set by the constructor?		
+		this.timeOfDay = null;
+		// could be automatically set by the constructor?
+		this.tripDate = null;
+		// calculated and set
+		this.tripTime = null;
+	}	
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.cs390h.triptimer.RouteInterface#getRouteName()
+	/**
+	 * 
+	 * @param routeName
+	 * @param timeOfDay
 	 */
-	@Override
-	public String getRouteName() {
-		return routeName;
-	}
+	public Route( String routeName, String timeOfDay ) {
+		// provided by the user
+		this.routeName = routeName;
+		// could be automatically set by the constructor?		
+		this.timeOfDay = timeOfDay;
+		// could be automatically set by the constructor?
+		this.tripDate = null;
+		// calculated and set
+		this.tripTime = null;
+	}	
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.cs390h.triptimer.RouteInterface#setTripTime(long)
+	/**
+	 * 
+	 * @param routeName
+	 * @param timeOfDay
+	 * @param tripTime
 	 */
-	@Override
-	public void setTripTime(Long tripTime) {
+	public Route( String routeName, String timeOfDay, Long tripTime ) {
+		// provided by the user
+		this.routeName = routeName;
+		// could be automatically set by the constructor?		
+		this.timeOfDay = timeOfDay;
+		// could be automatically set by the constructor?
+		this.tripDate = null;
+		// calculated and set
 		this.tripTime = tripTime;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.cs390h.triptimer.RouteInterface#getTripTime()
+	/**
+	 * 
+	 * @param routeName
+	 * @param timeOfDay
+	 * @param setDate
+	 * @param tripTime
 	 */
-	@Override
-	public Long getTripTime() {
-		return tripTime;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.cs390h.triptimer.RouteInterface#setTripDate(long)
-	 */
-	@Override
-	public void setTripDate(Date tripDate) {
-		this.tripDate = tripDate;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.cs390h.triptimer.RouteInterface#getTripDate()
-	 */
-	@Override
-	public Date getTripDate() {
-		return tripDate;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.cs390h.triptimer.RouteInterface#setTimeOfDay(java.lang.String)
-	 */
-	@Override
-	public void setTimeOfDay(String timeOfDay) {
-		this.timeOfDay = timeOfDay;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.cs390h.triptimer.RouteInterface#getTimeOfDay()
-	 */
-	@Override
-	public String getTimeOfDay() {
-		return timeOfDay;
+	public Route( String routeName, String timeOfDay, boolean setDate, Long tripTime ) {
+		// provided by the user
+		this.routeName = routeName;
+		if( setDate ) {
+			this.tripDate = new Date();
+		}
+		this.timeOfDay = timeOfDay;		
+		// calculated and set
+		this.tripTime = tripTime;
 	}
 }
