@@ -69,6 +69,18 @@ public interface RouteInterface {
 	
 	
 	/**
+	 * Setter method for tripName.
+	 * @param tripName
+	 */
+	public void setTripName( String tripName );
+	
+	/**
+	 * Getter method for tripName.
+	 * @return String tripName
+	 */
+	public String getTripName();
+	
+	/**
 	 * Setter method for routeName.
 	 * @param routeName
 	 */
@@ -102,7 +114,7 @@ public interface RouteInterface {
 	 * Getter method for tripDate.
 	 * @return Date tripDate
 	 */
-	public Date getTripDate();
+	public String getTripDate();
 	
 	/**
 	 * Setter method for timeOfDay.

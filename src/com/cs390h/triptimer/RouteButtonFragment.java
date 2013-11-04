@@ -20,6 +20,16 @@ public class RouteButtonFragment extends Fragment {
         		public void onClick( View view ) {
         			// add code to create random Route
         			Route route = RouteRandom.randomRouteFactory();
+        			((TripTimerActivity)getActivity()).newRouteToDatabase( route );
+        		}
+        	});
+        
+        // Deletes and recreates the table from the database
+        rootView.findViewById( R.id.clear_routes_button)
+        	.setOnClickListener( new View.OnClickListener() {
+        		@Override
+        		public void onClick( View view ) {
+        			((TripTimerActivity)getActivity()).resetTable();
         		}
         	});
         

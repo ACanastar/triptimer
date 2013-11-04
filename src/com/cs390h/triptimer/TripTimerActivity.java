@@ -22,9 +22,11 @@ public class TripTimerActivity extends Activity {
 	Fragment mapFragment = new RouteButtonFragment();
 	// Just using all trips fragment for now
 	Fragment tripOptionsFragment = new TripOptionsFragment();
+	TripTimerDbAdapter dbAdapter = new TripTimerDbAdapter( this );
 	
-	/**
-	 * 
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +42,42 @@ public class TripTimerActivity extends Activity {
 		actionBar.setDisplayShowTitleEnabled(false);
 		// add tabs to the ActionBar and set the Fragments to pass to the TabListener method
 		// TabListener just separates out the tab implementation from the main Activity
-		actionBar.addTab(actionBar.newTab().setText("Maps").setTabListener(new TabListener(mapFragment)));
-		actionBar.addTab(actionBar.newTab().setText("Trips").setTabListener(new TabListener(tripOptionsFragment)));
+		actionBar.addTab(actionBar.newTab().
+				setText("Maps").setTabListener(new TabListener(mapFragment)));
+		actionBar.addTab(actionBar.newTab().
+				setText("Trips").setTabListener(new TabListener(tripOptionsFragment)));
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.trip_timer, menu);
 		return true;
+	}
+	
+	/**
+	 * Sends a new route to the TripTimerDbAdapter's insert
+	 * method.
+	 * 
+	 * @param r
+	 */
+	public void newRouteToDatabase( Route r ) {
+		dbAdapter.open();
+		dbAdapter.insert( r );
+		dbAdapter.close();
+	}
+	
+	/**
+	 * Resets the table by calling the TripTimerDbAdapter.reCreateTable()
+	 * method.
+	 */
+	public void resetTable() {
+		dbAdapter.open();
+		dbAdapter.reCreateTable();
+		dbAdapter.close();
 	}
 }
