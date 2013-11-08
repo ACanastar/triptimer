@@ -23,22 +23,26 @@ import android.util.Log;
  */
 public class TripTimerDbAdapter {
 	
-    // the database primary key
+    // column labels
 	public static final String KEY_ROWID = "_id";
     public static final String KEY_RNAME = "routename";
     public static final String KEY_TNAME = "tripname";
     public static final String TIME_NAME = "timeofday";
     public static final String TRIP_TIME = "triptime";
     public static final String TRIP_DATE = "tripdate";
-    public static final String STARTX = "startx";
-    public static final String STARTY = "starty";
-    public static final String ENDX = "endx";
-    public static final String ENDY = "endy";
+    public static final String LAT = "lat";
+    //public static final String STARTY = "starty";
+    public static final String LONG = "long";
+    //public static final String ENDY = "endy";
     
+    // DbHelper is just for initializing the database and its tables
     private DbHelper DbHelper;
     private SQLiteDatabase db;
+    // Every query or data request from the database returns a cursor
+    // that can iterate over a set of data
     private Cursor cursor;
     
+    // Constants and strings that are used to form SQL language queries of the database
     private static final String DATABASE_NAME = "trips";
 	private static final String DATABASE_TABLE = "triphistory";
 	private static final int DATABASE_VERSION = 1;
@@ -48,7 +52,9 @@ public class TripTimerDbAdapter {
 			" routename text not null," +
 	        " timeofday text not null," +
 	        " triptime integer not null," +
-	        " tripdate text not null);";
+	        " tripdate text not null," +
+	        " lat real not null," +
+	        " long real not null);";
 	private static final String TAG = "TripTimerDbAdapter";
 	
 	private final Context context;
@@ -151,6 +157,8 @@ public class TripTimerDbAdapter {
        	values.put( TIME_NAME, r.getTimeOfDay() );
        	values.put( TRIP_DATE, r.getTripDate() );
        	values.put( TRIP_TIME, r.getTripTime() );
+       	values.put( LAT, r.getLatitude() );
+       	values.put( LONG, r.getLongitude() );
        	return db.insert( DATABASE_TABLE, null, values);
     }
     
@@ -174,7 +182,7 @@ public class TripTimerDbAdapter {
      */
     public List<Route> getAllTrips() {
     	cursor = db.query( DATABASE_TABLE, new String[] {KEY_ROWID, KEY_RNAME,
-    			KEY_TNAME, TIME_NAME, TRIP_TIME, TRIP_DATE},
+    			KEY_TNAME, TIME_NAME, TRIP_TIME, TRIP_DATE, LAT, LONG},
         		null, null, null, null, null );
     	List<Route> r = resultSetToRouteList( cursor );
     	return r;
@@ -244,7 +252,13 @@ public class TripTimerDbAdapter {
     									this.getTripDateColumnName() ) ),
 						cursor.getLong( 
     							cursor.getColumnIndex( 
-    									this.getTripTimeColumnName() ) )
+    									this.getTripTimeColumnName() ) ),
+						cursor.getDouble( 
+    							cursor.getColumnIndex( 
+    									this.getLatitudeColumnName() ) ),
+						cursor.getDouble( 
+    							cursor.getColumnIndex( 
+    									this.getLongitudeColumnName() ) )				
     					) 
     				);
     		} while( cursor.moveToNext() );
@@ -317,4 +331,23 @@ public class TripTimerDbAdapter {
     public String getTripDateColumnName() {
     	return TRIP_DATE; 
     }
+    
+    /**
+     * Returns the name of the tripTime column
+     * 
+     * @return String, LAT
+     */
+    public String getLatitudeColumnName() {
+    	return LAT; 
+    }
+    
+    /**
+     * Returns the name of the tripDate column
+     * 
+     * @return LONG
+     */
+    public String getLongitudeColumnName() {
+    	return LONG; 
+    }
 }
+

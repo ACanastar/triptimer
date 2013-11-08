@@ -2,6 +2,8 @@ package com.cs390h.triptimer;
 
 import java.util.Date;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Route objects are a collection of getter and setter methods
  * for variables recorded and displayed by TripTimer. Route objects
@@ -17,7 +19,9 @@ import java.util.Date;
 public class RouteAbstract implements RouteInterface {
 
 	protected String routeName, timeOfDay, tripName, tripDate;
-	protected Long tripTime; 
+	protected Long tripTime;
+	protected double latitude, longitude;
+	protected LatLng coord;
 	//protected Date tripDate;
 	
 	/*
@@ -79,8 +83,8 @@ public class RouteAbstract implements RouteInterface {
 	 * @see com.cs390h.triptimer.RouteInterface#setTripDate(long)
 	 */
 	@Override
-	public void setTripDate(Date tripDate) {
-		this.tripDate = tripDate.toString();
+	public void setTripDate(String tripDate) {
+		this.tripDate = tripDate;
 	}
 	
 	/*
@@ -108,5 +112,37 @@ public class RouteAbstract implements RouteInterface {
 	@Override
 	public String getTimeOfDay() {
 		return timeOfDay;
+	}
+	/*
+	 * (non-Javadoc)
+	 * @see com.cs390h.triptimer.RouteInterface#getLatitude()
+	 */
+	@Override
+	public double getLatitude() {
+		return this.latitude;
+	}
+	/*
+	 * (non-Javadoc)
+	 * @see com.cs390h.triptimer.RouteInterface#setLatitude(long)
+	 */
+	@Override
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	/*
+	 * (non-Javadoc)
+	 * @see com.cs390h.triptimer.RouteInterface#getLongitude()
+	 */
+	@Override
+	public double getLongitude() {
+		return this.longitude;
+	}
+	/*
+	 * (non-Javadoc)
+	 * @see com.cs390h.triptimer.RouteInterface#setLongitude(long)
+	 */
+	@Override
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;		
 	}	
 }

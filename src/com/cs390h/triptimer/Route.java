@@ -1,6 +1,5 @@
 package com.cs390h.triptimer;
 
-import java.text.DateFormat;
 import java.util.Date;
 
 /**
@@ -30,7 +29,9 @@ public class Route extends RouteAbstract {
 		// could be automatically set by the constructor?
 		this.tripDate = null;
 		// calculated and set later
-		this.tripTime = null;		
+		this.tripTime = null;
+		this.latitude = 0;
+		this.longitude = 0;
 	}
 	
 	/**
@@ -86,12 +87,16 @@ public class Route extends RouteAbstract {
 	 */
 	public Route( String tripName, String routeName, String timeOfDay, 
 													String tripDate, 
-													Long tripTime ) {
+													Long tripTime,
+													double latitude,
+													double longtiude) {
 		this.tripName = tripName;
 		this.routeName = routeName;
 		this.tripDate = tripDate;		
 		this.timeOfDay = timeOfDay;		
 		// calculated and set
 		this.tripTime = tripTime;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 }

@@ -1,0 +1,16 @@
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    	<item 
+    	  android:id="@+id/action_open"
+          android:icon="@drawable/ic_action_collection"
+          android:title="@string/action_open"
+          android:showAsAction="ifRoom" />
+    	<item 
+    	  android:id="@+id/action_start_trips"
+          android:icon="@drawable/ic_action_view_as_list"
+          android:title="@string/action_start_trips"
+          android:showAsAction="ifRoom" />
+    	<item
+    	  android:id="@+id/action_settings"
+          android:title="@string/action_settings"
+          android:showAsAction="never" />
+    </menu>
