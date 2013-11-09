@@ -2,7 +2,6 @@ package com.cs390h.triptimer;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -10,11 +9,10 @@ import java.util.StringTokenizer;
 
 import android.location.Location;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.util.Log;
@@ -62,8 +60,8 @@ GooglePlayServicesClient.OnConnectionFailedListener {
     private Marker destination;
  
     // Fragment objects
-    private FragmentManager manager;
-    private FragmentTransaction transaction;
+    // private FragmentManager manager;
+    // private FragmentTransaction transaction;
     
     //TEMPORARY Route objects, needs to be removed when database is used
     private Route route;
@@ -215,7 +213,8 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	            return true;
 	        case R.id.action_start_trips:
 	        	// Start the trips data analysis activity
-	        	
+	        	Intent intent = new Intent( this, TripSortActivity.class );
+	        	startActivity( intent );
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -341,9 +340,8 @@ GooglePlayServicesClient.OnConnectionFailedListener {
      * Sets the trip's fields. This is where the trip should 
      * stored in the database.
      */
-    private void setTrip() {	
-    	Toast.makeText(this, "We're in setTrip()!!", 
-				Toast.LENGTH_SHORT).show();  	
+    @SuppressLint("SimpleDateFormat")
+	private void setTrip() {	
     	// Get current time/date
     	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     	Date date = new Date();
@@ -454,9 +452,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 
                break;
         }
-    }
-    
-	
+    }	
     
     /**
      * Define a DialogFragment to display the error dialog generated in
@@ -611,8 +607,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 * 
 	 * @param r
 	 */
-	public void newRouteToDatabase( Route r ) {
-		
+	public void newRouteToDatabase( Route r ) {		
 		dbAdapter.open();
 		dbAdapter.insert( r );
 		dbAdapter.close();

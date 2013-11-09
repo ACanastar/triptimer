@@ -5,6 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="action_open">Open Trip</string>
     <string name="action_start_trips">Start Trips Activity</string>
+    <string name="action_sort_trips">Sort All Trips</string>
+    <string name="action_start_map">Start Map Activity</string>
     <string name="open_frag_title">Select a trip to open</string>
     <string name="title_mesg_text">Tap a location on map to begin trip</string>
     <string name="play_services_available">Google Play services are available</string>

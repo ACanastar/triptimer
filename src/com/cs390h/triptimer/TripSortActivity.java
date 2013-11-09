@@ -3,14 +3,12 @@ package com.cs390h.triptimer;
 import java.util.Collections;
 import java.util.List;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class TripSortActivity extends Activity {
 	private DialogFragment dialogFragment;
@@ -20,8 +18,7 @@ public class TripSortActivity extends Activity {
 	Fragment allTripsFragment = new AllTripsListFragment();
 	TripTimerDbAdapter dbAdapter = new TripTimerDbAdapter( this );
 	List<Route> trips;
-	AllTripsListFragment tripsList;
-	FragmentTransaction ft = getFragmentManager().beginTransaction();
+	//FragmentTransaction ft = getFragmentManager().beginTransaction();
 	
 	/*
 	 * (non-Javadoc)
@@ -32,7 +29,7 @@ public class TripSortActivity extends Activity {
 		// Activity Constructor takes a Bundle of data for when it is restarted from pause()
 		super.onCreate(savedInstanceState);
 		// Defines the layout of the View for the main activity
-		setContentView(R.layout.activity_trip_timer);
+		setContentView(R.layout.activity_trip_sort);
 		// getActionBar() returns reference to the activity's ActionBar
 	}
 	
@@ -43,7 +40,7 @@ public class TripSortActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.trip_timer, menu);
+		getMenuInflater().inflate(R.menu.trip_sorter, menu);
 		return true;
 	}
 	
@@ -54,10 +51,13 @@ public class TripSortActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected( MenuItem item ) {
 		switch ( item.getItemId() ) {
-			case R.id.sort_trips:
+			case R.id.action_sort_trips:
 				dialogFragment = 
 						SortFragmentActivity.newInstance( "Sort Your Trips" );
 				dialogFragment.show( getFragmentManager(), "Sorting Trips Dialog Fragment" );
+				break;
+			case R.id.action_map:
+				this.finish();
 				break;
 		}
 		return true;
@@ -72,40 +72,11 @@ public class TripSortActivity extends Activity {
 	}
 	
 	/**
-	 * 
-	 * @param color
-	 */
-	public void PositiveButton( String color ) {
-		
-	}
-	
-	/**
-	 * 
+	 * NegativeButton is just for handling the cancel button of
+	 * a dialog. No code is added here.
 	 */
 	public void NegativeButton() {
 		// do nothing; just closes the DialogFragment
-	}
-	
-	/**
-	 * Sends a new route to the TripTimerDbAdapter's insert
-	 * method.
-	 * 
-	 * @param r
-	 */
-	public void newRouteToDatabase( Route r ) {
-		dbAdapter.open();
-		dbAdapter.insert( r );
-		dbAdapter.close();
-	}
-	
-	/**
-	 * Resets the table by calling the TripTimerDbAdapter.reCreateTable()
-	 * method.
-	 */
-	public void resetTable() {
-		dbAdapter.open();
-		dbAdapter.reCreateTable();
-		dbAdapter.close();
 	}
 	
 	/**
@@ -117,27 +88,12 @@ public class TripSortActivity extends Activity {
 		dbAdapter.close();
 	}
 	
-	/**
-	 * Swap code from http://developer.android.com/guide/components/fragments.html
-	 */
-	public void swapToAllTrips() {
-		// Create new fragment and transaction
-		ListFragment allTripsListFragment = new AllTripsListFragment();		
-		// Replace whatever is in the fragment_container view with this fragment,
-		// and add the transaction to the back stack
-		ft.replace(R.id.fragment_container, allTripsListFragment);
-		ft.addToBackStack(null);
-		
-		// Commit the transaction
-		ft.commit();
-	}
-	
 	public List<Route> getTrips() {
 		Collections.sort( trips, Route.TRIPNAME_ORDER );
 		return trips;
 	}
 	
-	/*public void deliverSortOption( int option ) { 
+	public void deliverSortOption( int option ) { 
 		switch( option ) {
 			case 0:
 				sortData( "Trips" );
@@ -151,5 +107,10 @@ public class TripSortActivity extends Activity {
 			case 4:
 				break;				
 		}
-	}*/
+	}
+	
+	@Override
+	public void finish() {
+		super.finish();
+	}
 }

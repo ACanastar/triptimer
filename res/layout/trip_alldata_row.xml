@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/alltrip_data"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/border_drawable" >
+    
+	<TextView
+	    android:id="@+id/trip_name"
+	    android:layout_width="fill_parent"
+       	android:layout_height="wrap_content"
+       	android:background="#DDDDDD"
+       	android:textSize="30sp"
+       	android:textColor="#FF0000"
+       	android:textStyle="bold"
+       	android:gravity="center"
+       	android:layout_weight="1"/>
+	
+	<TextView
+	    android:id="@+id/route_name"
+	    android:layout_width="fill_parent"
+       	android:layout_height="wrap_content"
+       	android:textSize="24sp"
+       	android:textColor="#0000FF"
+       	android:textStyle="bold"
+       	android:gravity="center"
+       	android:layout_weight="1"/>
+		    	
+	<TextView
+	    android:id="@+id/triptime"
+	    android:layout_width="fill_parent"
+       	android:layout_height="wrap_content"
+       	android:textSize="16sp"
+       	android:textStyle="bold"
+       	android:textColor="#000000"
+       	android:gravity="center"
+       	android:layout_weight="1"/>
+	
+	<TextView
+	    android:id="@+id/timeofday"
+	    android:layout_width="fill_parent"
+       	android:layout_height="wrap_content"
+       	android:textSize="16sp"
+       	android:textColor="#000000"
+       	android:textStyle="bold"
+       	android:gravity="center"
+       	android:layout_weight="1"/>
+	
+	<TextView
+	    android:id="@+id/date"
+	    android:layout_width="fill_parent"
+       	android:layout_height="wrap_content"
+       	android:textSize="16sp"
+       	android:textColor="#000000"
+       	android:textStyle="bold"
+       	android:gravity="center"
+       	android:layout_weight="1"/>	 
+	
+</LinearLayout>

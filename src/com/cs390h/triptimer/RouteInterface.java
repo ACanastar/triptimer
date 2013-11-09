@@ -1,9 +1,6 @@
 package com.cs390h.triptimer;
 
-import java.util.Date;
 import java.util.Comparator;
-
-import com.google.android.gms.maps.model.LatLng;
 
 /**
  * RouteInterface defines the getter and setter methods for a 
@@ -19,68 +16,7 @@ import com.google.android.gms.maps.model.LatLng;
  *
  */
 
-public interface RouteInterface {
-	
-	/**
-	 * Comparator for ordering objects that implement the RouteInterface
-	 * by the date of the trip.
-	 */
-	static final Comparator<RouteInterface> TRIPDATE_ORDER = 
-			new Comparator<RouteInterface>() {
-		@Override
-		public int compare(RouteInterface r1, RouteInterface r2) {
-			return r1.getTripDate().compareTo( r2.getTripDate() );
-		}
-	};
-	
-	/**
-	 * Comparator for ordering objects that implement the RouteInterface
-	 * by the duration of the trip.
-	 */
-	static final Comparator<RouteInterface> TRIPTIME_ORDER = 
-			new Comparator<RouteInterface>() {
-		@Override
-		public int compare(RouteInterface r1, RouteInterface r2) {
-			return r1.getTripTime().compareTo( r2.getTripTime() );
-		}
-	};
-	
-	/**
-	 * Comparator for ordering objects that implement the RouteInterface
-	 * by their route name.
-	 */
-	static final Comparator<RouteInterface> ROUTENAME_ORDER = 
-			new Comparator<RouteInterface>() {
-		@Override
-		public int compare(RouteInterface r1, RouteInterface r2) {
-			return r1.getRouteName().compareTo( r2.getRouteName() );
-		}
-	};
-	
-	/**
-	 * Comparator for ordering objects that implement the RouteInterface
-	 * by their time of day.
-	 */
-	static final Comparator<RouteInterface> TIMEOFDAY_ORDER = 
-			new Comparator<RouteInterface>() {
-		@Override
-		public int compare(RouteInterface r1, RouteInterface r2) {
-			return r1.getTimeOfDay().compareTo( r2.getTimeOfDay() );
-		}
-	};
-	
-	/**
-	 * Comparator for ordering objects that implement the RouteInterface
-	 * by their trip name.
-	 */
-	static final Comparator<RouteInterface> TRIPNAME_ORDER = 
-			new Comparator<RouteInterface>() {
-		@Override
-		public int compare(RouteInterface r1, RouteInterface r2) {
-			return r1.getTripName().compareTo( r2.getTripName() );
-		}
-	};
-	
+public interface RouteInterface {	
 	
 	/**
 	 * Setter method for tripName.

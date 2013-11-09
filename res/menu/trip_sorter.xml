@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    	<item 
+    	  android:id="@+id/action_sort_trips"
+          android:icon="@drawable/ic_action_sort_by_size"
+          android:title="@string/action_sort_trips"
+          android:showAsAction="ifRoom" />
+    	<item 
+    	  android:id="@+id/action_map"
+          android:icon="@drawable/ic_action_map"
+          android:title="@string/action_start_map"
+          android:showAsAction="ifRoom" />
+    	<item
+    	  android:id="@+id/action_settings"
+          android:title="@string/action_settings"
+          android:showAsAction="never" />
+
+</menu>

@@ -273,9 +273,9 @@ public class TripTimerDbAdapter {
      * @param rs
      * @return List<String>
      */
-    private List<String> resultSetToStringList( Cursor c ) {
+    /*private List<String> resultSetToStringList( Cursor c ) {
     	return null;
-    }
+    }*/
     
     /**
      * Returns the name of the ROWID column

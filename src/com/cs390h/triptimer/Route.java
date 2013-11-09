@@ -89,7 +89,7 @@ public class Route extends RouteAbstract {
 													String tripDate, 
 													Long tripTime,
 													double latitude,
-													double longtiude) {
+													double longitude) {
 		this.tripName = tripName;
 		this.routeName = routeName;
 		this.tripDate = tripDate;		

@@ -1,9 +1,5 @@
 package com.cs390h.triptimer;
 
-import android.content.Context;
-import android.location.Location;
-import com.cs390h.triptimer.R;
-
 /**
  * Defines app-wide constants and utilities
  */
